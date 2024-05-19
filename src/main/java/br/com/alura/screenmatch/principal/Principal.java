@@ -2,7 +2,8 @@ package br.com.alura.screenmatch.principal;
 
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
-import br.com.alura.screenmatch.model.*;
+import br.com.alura.screenmatch.model.Serie;
+import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+
 public class Principal {
 
     private Scanner leitura = new Scanner(System.in);
@@ -19,7 +21,9 @@ public class Principal {
     private ConverteDados conversor = new ConverteDados();
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
     private final String API_KEY = "&apikey=6585022c";
-   private List<DadosSerie> dadosSeries = new ArrayList<>();
+    private List<DadosSerie> dadosSeries = new ArrayList<>();
+
+    private SerieRepository repositorio;
 
     public void exibeMenu() {
         var opcao = -1;
@@ -56,7 +60,8 @@ public class Principal {
 
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
-        dadosSeries.add(dados);
+        Serie serie = new Serie(dados);
+        repositorio.save(serie);
         System.out.println(dados);
     }
 
@@ -88,6 +93,9 @@ public class Principal {
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
+    }
+
+    public Principal(SerieRepository repositorio) {
     }
 
 }
