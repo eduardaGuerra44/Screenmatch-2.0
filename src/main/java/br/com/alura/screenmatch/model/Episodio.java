@@ -1,9 +1,15 @@
 package br.com.alura.screenmatch.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+@Entity
 public class Episodio {
+  @Id
+    private String id;
     private Integer temporada;
     private String titulo;
     private Integer numeroEpisodio;
@@ -26,6 +32,9 @@ public class Episodio {
         } catch (DateTimeParseException ex) {
             this.dataLancamento = null;
         }
+    }
+
+    public Episodio() {
     }
 
     public Integer getTemporada() {

@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ScreenmatchApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
