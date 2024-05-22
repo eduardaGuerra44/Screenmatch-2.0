@@ -25,6 +25,10 @@ public class Principal {
 
     private SerieRepository repositorio;
 
+    public Principal(SerieRepository repositorio) {
+        this.repositorio = repositorio;
+    }
+
     public void exibeMenu() {
         var opcao = -1;
         while(opcao !=0) {
@@ -93,9 +97,6 @@ public class Principal {
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
-    }
-
-    public Principal(SerieRepository repositorio) {
     }
 
 }
