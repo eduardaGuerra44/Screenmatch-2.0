@@ -1,9 +1,6 @@
 package br.com.alura.screenmatch.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,9 +10,10 @@ import java.time.format.DateTimeParseException;
 @Getter
 @Setter
 @Entity
-@Table(schema = "episodios")
+@Table(name = "episodios")
 public class Episodio {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private Integer temporada;
     private String titulo;
@@ -24,6 +22,8 @@ public class Episodio {
     private LocalDate dataLancamento;
     @ManyToOne
     private Serie serie;
+
+    public Episodio() {}
 
     public Episodio(Integer numeroTemporada, DadosEpisodio dadosEpisodio) {
         this.temporada = numeroTemporada;
@@ -43,8 +43,6 @@ public class Episodio {
         }
     }
 
-    public Episodio() {
-    }
 
     @Override
     public String toString() {
