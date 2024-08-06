@@ -26,6 +26,7 @@ public class Serie {
     private String atores;
     private String poster;
     private String sinopse;
+
     @OneToMany(mappedBy = "serie")
     private List<Episodio> episodios = new ArrayList<>();
 

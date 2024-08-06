@@ -12,6 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
+
 public class Principal {
 
     private Scanner leitura = new Scanner(System.in);
@@ -20,10 +21,10 @@ public class Principal {
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
     private final String API_KEY = System.getenv("API_KEY");
     private List<DadosSerie> dadosSeries = new ArrayList<>();
+    private List<Serie> series = new ArrayList<>();
 
     private final SerieRepository repositorio;
 
-    private List<Serie> series = new ArrayList<>();
     public Principal(SerieRepository repositorio) {
         this.repositorio = repositorio;
     }
@@ -87,7 +88,6 @@ public class Principal {
 
 
         if (serie.isPresent()){
-
             var serieEncontrada = serie.get();
             List<DadosTemporada> temporadas = new ArrayList<>();
 
@@ -104,7 +104,7 @@ public class Principal {
                 .collect(Collectors.toList());
        serieEncontrada.setEpisodios(episodios);
        repositorio.save(serieEncontrada);
-    }else {
+    } else {
             System.out.println("Série não encontrada");
         }
     }
