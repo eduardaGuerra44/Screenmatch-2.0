@@ -61,7 +61,6 @@ public class Principal {
             }
         }
     }
-
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
         Serie serie = new Serie(dados);
